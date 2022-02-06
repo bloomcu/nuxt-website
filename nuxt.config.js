@@ -2,9 +2,12 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  // Mode: https://nuxtjs.org/docs/configuration-glossary/configuration-mode/
+  ssr: true,
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxtboiler',
+    title: 'Nuxt Website',
     htmlAttrs: {
       lang: 'en'
     },
@@ -16,16 +19,37 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [
+      { src: 'https://unpkg.com/codyhouse-framework/main/assets/js/util.js', async: true }
+    ],
+    htmlAttrs: {
+      class: 'js'
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/styles/app.scss',
   ],
+
+  /*
+   ** Style Resources
+   ** Variables, mixins and functions to made accessible globally
+   */
+  styleResources: {
+    scss: [
+      // '~/assets/scss/resources/_breakpoints.scss',
+      // '~/assets/scss/resources/_mixins.scss'
+      '@/node_modules/codyhouse-framework/main/assets/css/base/_mixins.scss',
+      '@/node_modules/codyhouse-framework/main/assets/css/base/_breakpoints.scss'
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins'}
+    // Our Vite CodyHouse Component Library
+    { src: '~/plugins/vite-codyhouse', ssr: true }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -35,17 +59,22 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources',
+
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://cms-api.bloomcu.com/api'
+    // baseURL: 'https://cms-api.bloomcu.com/api'
+    baseURL: 'http://cms.test/api/bloomcu/website'
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

@@ -1,31 +1,30 @@
 <template>
-  <div>
-    <!-- <Tutorial/> -->
-     <component
-            v-bind="block.data"
-            :is="block.component"
-            v-for="(block, index) in data.data.layout.blocks"
-            :key="index"
-        />
-  </div>
+<div>
+  <component
+    :is="block.component"
+    v-for="(block, index) in layout.blocks"
+    :key="index"
+    v-bind="block.data"
+  />
+
+  <!-- <Hero/> -->
+  <!-- <Feature/> -->
+  <!-- <Feature :invert="true" /> -->
+</div>
 </template>
 
 <script>
 export default {
-   async asyncData({ $axios }) {
-     try {      
-       const { data } = await $axios.get('/organizations/bloomcu/pages/1')
-       console.log(`data`, data?.data?.layout?.blocks)
-       /// /
-       return {
-         data
-       }
-     } catch (error) {
-       console.log(`error`, error)
-       return {
-         error
-       }
-     }
-   }
+
+  async asyncData({ $axios }) {
+    try {
+      const { data } = await $axios.get('/posts/2')
+      return {
+        layout: data.data.layout
+      }
+    } catch (error) {
+      return {error}
+    }
+  }
 }
 </script>
