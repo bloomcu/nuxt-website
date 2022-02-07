@@ -104,5 +104,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  // https://nuxtjs.org/docs/configuration-glossary/configuration-generate/
+  generate: {
+    dir: 'public'
   }
 }
