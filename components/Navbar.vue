@@ -16,7 +16,6 @@
         <div class="header__nav-inner">
           <div class="header__label">Main menu</div>
           <ul v-if="menu" class="header__list">
-            <!-- Primary -->
             <li
               v-for="item in menu.children"
               :key="item.id"
@@ -25,15 +24,17 @@
               <NuxtLink :to="item.href" class="header__link">{{ item.title }}</NuxtLink>
             </li>
 
-            <!-- Secondary -->
-            <li v-if="menu.secondary.length" class="header__item header__item--divider" aria-hidden="true"></li>
-
+            <!-- <li v-if="menu.secondary.length" class="header__item header__item--divider" aria-hidden="true"></li>
             <li
               v-for="item in menu.secondary"
               :key="item.id"
               class="header__item"
             >
               <NuxtLink :to="item.href" class="header__nav-btn btn btn--primary">{{ item.title }}</NuxtLink>
+            </li> -->
+            <li class="header__item header__item--divider" aria-hidden="true"></li>
+            <li class="header__item">
+              <NuxtLink to="/get-started" class="header__nav-btn btn btn--primary">Get Started</NuxtLink>
             </li>
           </ul>
         </div>
@@ -47,6 +48,7 @@ import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   components: {},
+
   props: {
     menu: {
       type: Object,

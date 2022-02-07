@@ -1,9 +1,7 @@
-// import Menus from '~/app/api/json/Menus'
-// import Pages from '~/app/api/json/Pages'
+import Globals from '~/api/Globals'
 import Posts from '~/api/Posts'
 
 export const repository = ($axios) => ({
-    // menus: Menus($axios),
-    // pages: Pages($axios),
+    globals: Globals($axios),
     posts: Posts($axios),
 })
