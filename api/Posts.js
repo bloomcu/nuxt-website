@@ -1,11 +1,10 @@
 const endpoint = '/posts'
 
 export default ($axios) => ({
+    show(path) {
+        if (path === '') { path = 'homepage' }
 
-    show(slug) {
-        if (slug === undefined) { slug = 2 }
-
-        return $axios.$get(endpoint + '/' + slug)
+        return $axios.$get(endpoint + '?path=' + path)
           .then(post => {
               return post
           })
@@ -13,5 +12,4 @@ export default ($axios) => ({
               console.log(error)
           })
     }
-
 })

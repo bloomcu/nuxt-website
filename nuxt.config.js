@@ -49,10 +49,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // Our Vite CodyHouse Component Library
-    { src: '~/plugins/vite-codyhouse', ssr: true },
+    { src: '~/plugins/viteComponentLibrary', ssr: true },
 
     // Our CMS API repository
-    '~/plugins/repository'
+    '~/plugins/apiRepository'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -77,7 +77,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // baseURL: 'https://cms-api.bloomcu.com/api'
-    baseURL: 'http://cms.test/api/bloomcu/website'
+    baseURL: 'http://cms.test/api/public/1'
   },
 
   // Vue Config: https://nuxtjs.org/docs/configuration-glossary/configuration-vue-config/
@@ -86,6 +86,20 @@ export default {
       productionTip: false,
       devtools: true
     }
+  },
+
+  // https://nuxtjs.org/docs/configuration-glossary/configuration-router/
+  router: {
+    linkActiveClass: 'active-link',
+    linkExactActiveClass: 'exact-active-link',
+
+    // extendRoutes(routes, resolve) {
+    //   routes.push({
+    //     name: 'custom',
+    //     path: '*',
+    //     component: resolve(__dirname, 'pages/404.vue')
+    //   })
+    // }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

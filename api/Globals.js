@@ -1,7 +1,6 @@
-const baseURL = 'https://my-json-server.typicode.com/heyharmon/json-api/menu'
+const endpoint = '/globals'
 
 export default ($axios) => ({
-
     show() {
         return $axios.$get(baseURL)
         .then(menu => {
@@ -11,5 +10,4 @@ export default ($axios) => ({
             console.log(error)
         })
     }
-
 })
