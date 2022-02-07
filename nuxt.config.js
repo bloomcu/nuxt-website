@@ -76,8 +76,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // baseURL: 'https://cms-api.bloomcu.com/api'
-    baseURL: 'http://cms.test/api/public/1'
+    baseURL: 'https://cms-api.bloomcu.com/api/public/1'
+    // baseURL: 'http://cms.test/api/public/1'
   },
 
   // Vue Config: https://nuxtjs.org/docs/configuration-glossary/configuration-vue-config/
