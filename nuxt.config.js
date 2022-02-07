@@ -49,7 +49,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // Our Vite CodyHouse Component Library
-    { src: '~/plugins/vite-codyhouse', ssr: true }
+    { src: '~/plugins/vite-codyhouse', ssr: true },
+
+    // Our CMS API repository
+    '~/plugins/repository'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -76,6 +79,15 @@ export default {
     // baseURL: 'https://cms-api.bloomcu.com/api'
     baseURL: 'http://cms.test/api/bloomcu/website'
   },
+
+  // Vue Config: https://nuxtjs.org/docs/configuration-glossary/configuration-vue-config/
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: true
+    }
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
