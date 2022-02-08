@@ -34,7 +34,7 @@
             </li> -->
             <li class="header__item header__item--divider" aria-hidden="true"></li>
             <li class="header__item">
-              <NuxtLink to="/get-started" class="header__nav-btn btn btn--primary">Get Started</NuxtLink>
+              <NuxtLink to="/log-in" class="header__nav-btn btn btn--primary">Log In</NuxtLink>
             </li>
           </ul>
         </div>
