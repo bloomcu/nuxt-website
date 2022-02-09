@@ -4,7 +4,7 @@ export default ($axios) => ({
     show(path) {
         if (path === '') { path = 'homepage' }
 
-        return $axios.$get(endpoint + '?path=' + path)
+        return $axios.$get(endpoint + '?path=/' + path)
           .then(post => {
               return post
           })
