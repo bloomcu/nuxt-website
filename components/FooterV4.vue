@@ -8,7 +8,7 @@
             :key="item.id"
             class="footer-v4__nav-item"
           >
-            <NuxtLink v-if="item.href" :to="item.href">{{ item.title }}</NuxtLink>
+            <NuxtLink v-if="item.href" :to="`/${item.href}`">{{ item.title }}</NuxtLink>
             <NuxtLink v-else to="/">{{ item.title }}</NuxtLink>
           </li>
         </ul>

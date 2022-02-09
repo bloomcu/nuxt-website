@@ -21,7 +21,7 @@
                 class="grid gap-xs text-sm@md"
               >
                 <li v-for="child in item.children" :key="child.id">
-                  <NuxtLink v-if="child.href" :to="child.href" class="main-footer__link">{{ child.title }}</NuxtLink>
+                  <NuxtLink v-if="child.href" :to="`/${child.href}`" class="main-footer__link">{{ child.title }}</NuxtLink>
                   <NuxtLink v-else to="/" class="main-footer__link">{{ child.title }}</NuxtLink>
                 </li>
               </ul>

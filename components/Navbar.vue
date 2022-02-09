@@ -21,7 +21,10 @@
               :key="item.id"
               class="header__item"
             >
-              <NuxtLink :to="item.href" class="header__link">{{ item.title }}</NuxtLink>
+              <!-- TODO: item.href needs to be item.path
+              In fact, this needs to use the AppButton component and render a nuxt link or
+              an anchor depending on item having a path or href -->
+              <NuxtLink :to="`/${item.href}`" class="header__link">{{ item.title }}</NuxtLink>
             </li>
 
             <!-- <li v-if="menu.secondary.length" class="header__item header__item--divider" aria-hidden="true"></li>
