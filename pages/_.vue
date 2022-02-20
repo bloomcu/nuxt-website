@@ -2,10 +2,10 @@
   <div>
     <Navbar :menu="globals.header"/>
 
-    <div v-if="post.layout">
+    <div v-if="post">
       <component
         :is="block.component"
-        v-for="(block, index) in post.layout.blocks"
+        v-for="(block, index) in post.blocks"
         :key="index"
         v-bind="block.data"
       />

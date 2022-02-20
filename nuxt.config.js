@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Mode: https://nuxtjs.org/docs/configuration-glossary/configuration-mode/
   ssr: true,
