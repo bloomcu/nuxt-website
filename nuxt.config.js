@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Nuxt Website',
+    title: process.env.SITE_TITLE,
     htmlAttrs: {
       lang: 'en'
     },
@@ -26,6 +26,11 @@ export default {
     htmlAttrs: {
       class: 'js'
     }
+  },
+
+  // Runtime .env variables
+  publicRuntimeConfig: {
+    siteTitle: process.env.SITE_TITLE || 'Site Title',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
