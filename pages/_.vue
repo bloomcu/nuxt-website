@@ -11,7 +11,7 @@
       />
     </div>
 
-    <Footer :menu="globals.footer"/>
+    <FooterV4 :menu="globals.footer"/>
   </div>
 </template>
 
