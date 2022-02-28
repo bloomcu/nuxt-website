@@ -31,6 +31,7 @@ export default {
   // Runtime .env variables
   publicRuntimeConfig: {
     siteTitle: process.env.SITE_TITLE || 'Site Title',
+    cmsAdminUrl: process.CMS_ADMIN_URL || '',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

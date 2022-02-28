@@ -36,11 +36,11 @@
             >
               <NuxtLink :to="item.href" class="header__nav-btn btn btn--primary">{{ item.title }}</NuxtLink>
             </li> -->
-            <li class="header__item header__item--divider" aria-hidden="true"></li>
-            <li class="header__item">
+            <!-- <li class="header__item header__item--divider" aria-hidden="true"></li> -->
+            <!-- <li class="header__item"> -->
               <!-- <NuxtLink to="/log-in" class="header__nav-btn btn btn--primary">Log In</NuxtLink> -->
-              <a href="https://cms.journeyframe.io/" target="_blank" class="header__nav-btn btn btn--primary">Log in</a>
-            </li>
+              <!-- <NuxtLink :to="$config.cmsAdminUrl" target="_blank" class="header__nav-btn btn btn--primary">Log in</NuxtLink> -->
+            <!-- </li> -->
           </ul>
         </div>
       </nav>
