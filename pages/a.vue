@@ -5,6 +5,8 @@
     <NuxtLink to="/b">/b</NuxtLink>
     <br><br>
     <NuxtLink to="http://localhost:3000/b">http://localhost:3000/b</NuxtLink>
+    <br><br>
+    <NuxtLink to="https://www.google.com">https://www.google.com</NuxtLink>
   </div>
 </template>
 
