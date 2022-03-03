@@ -25,7 +25,7 @@
               <!-- TODO: item.href needs to be item.path
               In fact, this needs to use the AppButton component and render a nuxt link or
               an anchor depending on item having a path or href -->
-              <NuxtLink :to="`/${item.href}`" class="header__link">{{ item.title }}</NuxtLink>
+              <NuxtLink :to="`/${item.data.href}`" class="header__link">{{ item.data.text }}</NuxtLink>
             </li>
 
             <!-- <li v-if="menu.secondary.length" class="header__item header__item--divider" aria-hidden="true"></li>

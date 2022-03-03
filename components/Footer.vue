@@ -15,14 +15,14 @@
               :key="item.id"
               class="col-6@xs col-3@md"
             >
-              <h4 class="margin-bottom-sm text-base@md">{{ item.title }}</h4>
+              <h4 class="margin-bottom-sm text-base@md">{{ item.data.text }}</h4>
               <ul
                 v-if="item.children"
                 class="grid gap-xs text-sm@md"
               >
                 <li v-for="child in item.children" :key="child.id">
-                  <NuxtLink v-if="child.href" :to="`/${child.href}`" class="main-footer__link">{{ child.title }}</NuxtLink>
-                  <NuxtLink v-else to="/" class="main-footer__link">{{ child.title }}</NuxtLink>
+                  <NuxtLink v-if="child.data.href" :to="`/${child.data.href}`" class="main-footer__link">{{ child.data.text }}</NuxtLink>
+                  <NuxtLink v-else to="/" class="main-footer__link">{{ child.data.text }}</NuxtLink>
                 </li>
               </ul>
             </li>
