@@ -4,7 +4,7 @@
     <br><br>
     <NuxtLink to="/a">/a</NuxtLink>
     <br><br>
-    <NuxtLink to="http://localhost:3000/b">http://localhost:3000/b</NuxtLink>
+    <NuxtLink to="https://nuxt-staging.bloomcu.com/a">https://nuxt-staging.bloomcu.com/a</NuxtLink>
     <br><br>
     <NuxtLink to="https://www.google.com">https://www.google.com</NuxtLink>
   </div>
