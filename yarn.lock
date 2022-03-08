@@ -9567,10 +9567,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-component-library@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/vite-component-library/-/vite-component-library-0.0.12.tgz#4eaa2470a6fe7c5a7f2c5ecf8ee34a8012585e17"
-  integrity sha512-u32eFS9sqc6T0ievxra+lfhPhhV+pOsioD2HffNCmojy52jx8ZB491SicO55AQXqy8EPhwDhQ27qgj4IZ0eGoA==
+vite-component-library@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/vite-component-library/-/vite-component-library-0.0.13.tgz#8efca10effaa54b3741b40351822ae5e8f30427a"
+  integrity sha512-ngwC5Ep1mvkVqFI58QXVwEr6SjHhz2SqDvqUa2sMxXAhrIsa6745fRdp7zLK4pRZNLI+WTcJnGx8DA96plC6YQ==
 
 vm-browserify@^1.0.1:
   version "1.1.2"

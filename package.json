@@ -17,7 +17,7 @@
     "codyhouse-framework": "^3.0.4",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "vite-component-library": "0.0.12"
+    "vite-component-library": "0.0.13"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
