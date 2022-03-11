@@ -58,7 +58,7 @@ export default {
     { src: '~/plugins/viteComponentLibrary', ssr: true },
 
     // Our CMS API repository
-    '~/plugins/apiRepository'
+    '~/plugins/apiRepository',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
