@@ -12,14 +12,94 @@
     </div>
 
     <FooterV4 :menu="globals.footer"/>
+
+    <Modal uuid="search">
+      <!-- Search input -->
+      <div class="search-input search-input--icon-left">
+        <input v-model="query" class="search-input__input form-control" type="search" name="search-input" placeholder="Search..." aria-label="Search">
+        <button class="search-input__btn">
+          <svg class="icon" viewBox="0 0 20 20"><title>Submit</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="8" cy="8" r="6"/><line x1="12.242" y1="12.242" x2="18" y2="18"/></g></svg>
+        </button>
+      </div>
+
+      <!-- Search History -->
+      <div v-if="user.searchHistory.length && results.length == 0" class="margin-top-sm">
+        <h4 class="text-base margin-bottom-xxxxs">Recent</h4>
+        <ul>
+          <li v-for="(item, index) in user.searchHistory" :key="index" class="padding-top-xxxs">
+            <a @click.prevent="searchFromHistory(item)" href="">{{ item }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Search Results -->
+      <ul v-if="query" class="margin-top-sm">
+        <li v-for="(result, index) in results" :key="index" class="padding-y-sm border-bottom">
+          <NuxtLink :to="result.url" @click.native="toggle('search')" >
+            <h4 class="text-base margin-bottom-xxs">{{ result.title }}</h4>
+          </NuxtLink>
+          <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis ex in neque lobortis hendrerit.</small>
+        </li>
+      </ul>
+    </Modal>
   </div>
 </template>
 
 <script>
+import { ref, watch } from '@vue/composition-api'
 import { mapState } from 'vuex'
+import { MeiliSearch } from 'meilisearch'
+import _ from 'lodash'
+import useToggle from '@/composables/useToggle'
+import useDebouncedRef from '@/composables/useDebouncedRef'
 
 export default {
-  setup(context) {},
+  setup(props, { root }) {
+    const { toggle } = useToggle()
+
+    const client = new MeiliSearch({
+      host: 'http://localhost:7700',
+      apiKey: '',
+    })
+
+    const query = ref('')
+
+    const debouncedQuery = useDebouncedRef('', 1500)
+
+    const results = ref([])
+
+    const search = (keyword) => {
+      if (keyword === '') {
+        results.value = []
+      } else {
+        debouncedQuery.value = keyword
+
+        client.index('bloomcu_website_posts').search(keyword).then(response => {
+          results.value = response.hits
+        })
+      }
+    }
+
+    const searchFromHistory = (value) => {
+      query.value = value
+    }
+
+    watch(query, (value) => {
+      search(value)
+    })
+
+    watch(debouncedQuery, (value) => {
+      root.$store.dispatch('addSearchHistory', value)
+    })
+
+    return {
+      toggle,
+      client,
+      results,
+      query,
+      searchFromHistory
+    }
+  },
 
   asyncData({ params, $repository }) {
     return $repository.posts.show(params.pathMatch)
@@ -28,6 +108,116 @@ export default {
       })
   },
 
-  computed: mapState(['globals'])
+  computed: {
+    ...mapState(['globals', 'user'])
+  }
 }
 </script>
+
+<style lang="scss">
+/* --------------------------------
+
+File#: _1_search-input
+Title: Search input
+Descr: Search input field with custom button
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --search-input-btn-width: 2.2em;
+  --search-input-icon-size: 1em;
+  --search-input-shortcut-margin: 0.325em; /* gap between the shortcut badge and the input edges */
+}
+
+.search-input {
+  position: relative;
+}
+
+.search-input__input {
+  width: 100%;
+  height: 100%;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance:none;
+  }
+
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .search-input--icon-right & {
+    padding-right: var(--search-input-btn-width);
+  }
+
+  .search-input--icon-left & {
+    padding-left: var(--search-input-btn-width);
+  }
+}
+
+.search-input__btn {
+  @include reset;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: var(--search-input-btn-width);
+
+  &:active .icon {
+    transform: translateY(2px);
+  }
+
+  .icon {
+    display: block;
+    --size: var(--search-input-icon-size);
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-contrast-low); /* icon color */
+    transition: .2s;
+  }
+
+  .search-input--icon-left & {
+    left: 0;
+    right: auto;
+    pointer-events: none;
+  }
+}
+
+.search-input__btn:focus .icon,
+.search-input .search-input__input:focus + .search-input__btn .icon {
+  color: var(--color-primary); /* active icon color */
+}
+
+/* --shortcut */
+.search-input__shortcut {
+  position: absolute;
+  right: var(--search-input-shortcut-margin);
+  top: var(--search-input-shortcut-margin);
+  height: calc(100% - var(--search-input-shortcut-margin)*2);
+  display: flex;
+  align-items: center;
+
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-contrast-lower);
+  border-radius: var(--radius-sm);
+
+  --space-unit: 1em;
+  padding: 0 var(--space-xxxs);
+
+  line-height: 1;
+  color: var(--color-contrast-medium);
+}
+
+.search-input:focus-within .search-input__shortcut {
+  display: none;
+}
+</style>
