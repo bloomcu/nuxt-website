@@ -3183,6 +3183,13 @@ create-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
+cross-fetch@^3.1.4:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
+  integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
+  dependencies:
+    node-fetch "2.6.7"
+
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -5993,6 +6000,13 @@ mdn-data@2.0.4:
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.4.tgz#699b3c38ac6f1d728091a64650b65d388502fd5b"
   integrity sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
 
+meilisearch@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.24.0.tgz#a71454baac058f502b931af17069ab676fbaced6"
+  integrity sha512-qME1dsHZePBQi8qFdhbilcFzaL+oZJgUuls+FZ23hHpdhJI+iMFSmjjcfsxq5hdg2qczbCXv7yAo3Sh8xgfkgA==
+  dependencies:
+    cross-fetch "^3.1.4"
+
 mem@^8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/mem/-/mem-8.1.1.tgz#cf118b357c65ab7b7e0817bdf00c8062297c0122"
@@ -6334,7 +6348,7 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-node-fetch@^2.6.1:
+node-fetch@2.6.7, node-fetch@^2.6.1:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
@@ -9567,10 +9581,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-component-library@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/vite-component-library/-/vite-component-library-0.0.13.tgz#8efca10effaa54b3741b40351822ae5e8f30427a"
-  integrity sha512-ngwC5Ep1mvkVqFI58QXVwEr6SjHhz2SqDvqUa2sMxXAhrIsa6745fRdp7zLK4pRZNLI+WTcJnGx8DA96plC6YQ==
+vite-component-library@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/vite-component-library/-/vite-component-library-0.0.14.tgz#bb2037ecf755c1cf8b3d5278f9789d20fdde883b"
+  integrity sha512-AcAn1oFrb600N65EA98kTJpGejZhwH4tMDxWvTMUcxEcAIAaOm1h8B7kMDwpf38p/Jj7uhbYbI2FeoKrqb3aJA==
 
 vm-browserify@^1.0.1:
   version "1.1.2"

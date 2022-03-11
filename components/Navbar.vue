@@ -36,11 +36,13 @@
             >
               <NuxtLink :to="item.href" class="header__nav-btn btn btn--primary">{{ item.title }}</NuxtLink>
             </li> -->
-            <!-- <li class="header__item header__item--divider" aria-hidden="true"></li> -->
-            <!-- <li class="header__item"> -->
-              <!-- <NuxtLink to="/log-in" class="header__nav-btn btn btn--primary">Log In</NuxtLink> -->
+
+            <li class="header__item header__item--divider" aria-hidden="true"></li>
+            <li class="header__item">
+              <!-- <Button class="header__nav-btn btn btn--primary">Search</Button> -->
+              <AppButton text="Search" trigger="search" class="header__nav-btn btn btn--primary"/>
               <!-- <NuxtLink :to="$config.cmsAdminUrl" target="_blank" class="header__nav-btn btn btn--primary">Log in</NuxtLink> -->
-            <!-- </li> -->
+            </li>
           </ul>
         </div>
       </nav>

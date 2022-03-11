@@ -1,20 +1,30 @@
 export const state = () => ({
-  globals: {}
+  globals: {},
+  user: {
+    searchHistory: []
+  }
 })
 
 export const actions = {
   nuxtServerInit(context) {
     return this.$repository.globals.show()
       .then((response) => {
-        // console.log(response.data)
         context.commit('SET_GLOBALS', response.data);
       })
+  },
+  addSearchHistory(context, value) {
+    context.commit('ADD_SEARCH_HISTORY', value)
   }
 }
 
 export const mutations = {
-  SET_GLOBALS(state, value){
+  SET_GLOBALS(state, value) {
     state.globals = value
+  },
+  ADD_SEARCH_HISTORY(state, value) {
+    if (value && !state.user.searchHistory.includes(value)) {
+      state.user.searchHistory.unshift(value)
+    }
   }
 }
 
