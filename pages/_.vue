@@ -63,8 +63,9 @@ export default {
     const { toggle } = useToggle()
 
     const client = new MeiliSearch({
-      host: 'http://localhost:7700',
-      apiKey: '',
+      // TODO: Place this in .env file
+      host: 'https://search.bloomcu.com',
+      apiKey: 'ZGY0MWI4MjU2ZDIxNGMwM2Q3YTEwYWVm',
     })
 
     const query = ref('')
