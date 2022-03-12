@@ -22,9 +22,14 @@
         </button>
       </div>
 
+      <!-- No results -->
+      <div v-if="query && !results.length" class="margin-top-md">
+        <p>Sorry, we couldn't find results for "{{ query }}"</p>
+      </div>
+
       <!-- Search History -->
-      <div v-if="user.searchHistory.length && results.length == 0" class="margin-top-sm">
-        <h4 class="text-base margin-bottom-xxxxs">Recent</h4>
+      <div v-if="user.searchHistory.length && results.length == 0" class="margin-top-md">
+        <h4 class="text-base margin-bottom-xxxxs">Recent Searches</h4>
         <ul>
           <li v-for="(item, index) in user.searchHistory" :key="index" class="padding-top-xxxs">
             <a @click.prevent="searchFromHistory(item)" href="">{{ item }}</a>
@@ -35,7 +40,7 @@
       <!-- Search Results -->
       <ul v-if="query" class="margin-top-sm">
         <li v-for="(result, index) in results" :key="index" class="padding-y-sm border-bottom">
-          <NuxtLink :to="result.url" @click.native="toggle('search')" >
+          <NuxtLink :to="result.url" @click.native="toggle('search')">
             <h4 class="text-base margin-bottom-xxs">{{ result.title }}</h4>
           </NuxtLink>
           <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis ex in neque lobortis hendrerit.</small>
@@ -64,7 +69,7 @@ export default {
 
     const query = ref('')
 
-    const debouncedQuery = useDebouncedRef('', 1500)
+    const debouncedQuery = useDebouncedRef('', 1000)
 
     const results = ref([])
 

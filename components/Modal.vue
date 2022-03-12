@@ -40,8 +40,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed, watch } from '@vue/composition-api'
 import useToggle from '@/composables/useToggle'
+import useLockBody from '@/composables/useLockBody'
 
 export default defineComponent({
   components: {},
@@ -55,7 +56,13 @@ export default defineComponent({
 
   setup (props) {
     const { isActive, toggle } = useToggle()
+    const { toggleLockBody } = useLockBody()
+
     const active = computed(() => isActive(props.uuid))
+
+    watch(active, (value) => {
+      toggleLockBody()
+    })
 
     return {
       toggle,
