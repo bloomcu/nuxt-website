@@ -32,7 +32,7 @@ export default {
   publicRuntimeConfig: {
     SITE_TITLE: process.env.SITE_TITLE || 'Site Title',
     CMS_ADMIN_URL: process.CMS_ADMIN_URL || '',
-    ENABLE_SEARCH: process.ENABLE_SEARCH || true,
+    ENABLE_SEARCH: process.ENABLE_SEARCH,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
