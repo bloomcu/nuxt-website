@@ -20,7 +20,7 @@
           <svg class="icon" viewBox="0 0 20 20"><title>Submit</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="8" cy="8" r="6"/><line x1="12.242" y1="12.242" x2="18" y2="18"/></g></svg>
         </button>
 
-        <input v-model="query" class="search-input__input form-control" type="search" name="search-input" placeholder="What can we help you find?" autocomplete="off" aria-label="Search">
+        <input v-model="query" ref="searchInput" class="search-input__input form-control" type="search" name="search-input" placeholder="What can we help you find?" autocomplete="off" aria-label="Search">
 
         <button v-if="query" @click="query = ''" class="search-input__btn search-input__clear" aria-hidden="true">
           <svg class="icon" viewBox="0 0 24 24"><title>e remove</title><g stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" stroke-linejoin="round" class="nc-icon-wrapper"><line x1="19" y1="5" x2="5" y2="19"></line> <line x1="19" y1="19" x2="5" y2="5"></line></g></svg>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { ref, watch } from '@vue/composition-api'
+import { ref, watch, watchEffect, computed, nextTick } from '@vue/composition-api'
 import { mapState } from 'vuex'
 import { MeiliSearch } from 'meilisearch'
 import _ from 'lodash'
@@ -65,12 +65,22 @@ import useDebouncedRef from '@/composables/useDebouncedRef'
 
 export default {
   setup(props, { root }) {
-    const { toggle } = useToggle()
+    const { toggle, isActive } = useToggle()
 
     const client = new MeiliSearch({
       // TODO: Place this in .env file
       host: 'https://search.bloomcu.com',
       apiKey: 'ZGY0MWI4MjU2ZDIxNGMwM2Q3YTEwYWVm',
+    })
+
+    const searchInput = ref(null)
+
+    const searchIsOpen = computed(() => isActive('search'))
+
+    watch(searchIsOpen, (value) => {
+      setTimeout(function () {
+        searchInput.value.focus()
+      }, 300)
     })
 
     const query = ref('')
@@ -105,6 +115,7 @@ export default {
 
     return {
       toggle,
+      searchInput,
       client,
       results,
       query,
