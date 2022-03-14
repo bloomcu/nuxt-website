@@ -69,8 +69,10 @@ export default {
 
     const client = new MeiliSearch({
       // TODO: Place this in .env file
-      host: 'https://search.bloomcu.com',
-      apiKey: 'ZGY0MWI4MjU2ZDIxNGMwM2Q3YTEwYWVm',
+      // host: 'https://search.bloomcu.com',
+      // apiKey: 'ZGY0MWI4MjU2ZDIxNGMwM2Q3YTEwYWVm',
+      host: 'https://search.journeyframe.io',
+      apiKey: 'Y2JkNmMyZDIxZjM1ZWJjY2M1ZTdhMmZm',
     })
 
     const searchInput = ref(null)
