@@ -55,7 +55,7 @@
 
             <li class="header__item header__item--divider" aria-hidden="true"></li>
             <li class="header__item">
-              <AppButton v-if="$config.ENABLE_SEARCH" @click.native="close('navbar')" text="Search" trigger="search" class="header__nav-btn btn btn--primary"/>
+              <AppButton v-if="$config.ENABLE_SEARCH == true" @click.native="close('navbar')" text="Search" trigger="search" class="header__nav-btn btn btn--primary"/>
               <a v-else :href="$config.CMS_ADMIN_URL" target="_blank" class="header__nav-btn btn btn--primary">Log in</a>
             </li>
           </ul>
