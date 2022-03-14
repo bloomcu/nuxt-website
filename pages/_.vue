@@ -13,12 +13,17 @@
 
     <FooterV4 :menu="globals.footer"/>
 
-    <Modal uuid="search">
+    <Modal uuid="search" title="Search">
       <!-- Search input -->
       <div class="search-input search-input--icon-left">
-        <input v-model="query" class="search-input__input form-control" type="search" name="search-input" placeholder="Search..." autocomplete="off" aria-label="Search">
         <button class="search-input__btn">
           <svg class="icon" viewBox="0 0 20 20"><title>Submit</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="8" cy="8" r="6"/><line x1="12.242" y1="12.242" x2="18" y2="18"/></g></svg>
+        </button>
+
+        <input v-model="query" class="search-input__input form-control" type="search" name="search-input" placeholder="What can we help you find?" autocomplete="off" aria-label="Search">
+
+        <button v-if="query" @click="query = ''" class="search-input__btn search-input__clear" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><title>e remove</title><g stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" stroke-linejoin="round" class="nc-icon-wrapper"><line x1="19" y1="5" x2="5" y2="19"></line> <line x1="19" y1="19" x2="5" y2="5"></line></g></svg>
         </button>
       </div>
 
@@ -29,7 +34,7 @@
 
       <!-- Search History -->
       <div v-if="user.searchHistory.length && results.length == 0" class="margin-top-md">
-        <h4 class="text-base margin-bottom-xxxxs">Recent Searches</h4>
+        <h4 class="text-sm margin-bottom-xxxxs">Recent Searches</h4>
         <ul>
           <li v-for="(item, index) in user.searchHistory" :key="index" class="padding-top-xxxs">
             <a @click.prevent="searchFromHistory(item)" href="">{{ item }}</a>
@@ -203,27 +208,11 @@ Usage: codyhouse.co/license
   color: var(--color-primary); /* active icon color */
 }
 
-/* --shortcut */
-.search-input__shortcut {
-  position: absolute;
-  right: var(--search-input-shortcut-margin);
-  top: var(--search-input-shortcut-margin);
-  height: calc(100% - var(--search-input-shortcut-margin)*2);
-  display: flex;
-  align-items: center;
-
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-contrast-lower);
-  border-radius: var(--radius-sm);
-
-  --space-unit: 1em;
-  padding: 0 var(--space-xxxs);
-
-  line-height: 1;
-  color: var(--color-contrast-medium);
-}
-
-.search-input:focus-within .search-input__shortcut {
-  display: none;
+/* --clear */
+.search-input__clear {
+  right: 0 !important;
+  left: auto !important;
+  pointer-events: all !important;
+  cursor: pointer;
 }
 </style>

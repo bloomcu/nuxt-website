@@ -1,9 +1,8 @@
 <template>
   <div>
       <div
-        id="modal-name-1"
         :class="active ? 'modal--is-visible' : ''"
-        class="modal modal--animate-scale flex bg-black bg-opacity-90% js-modal"
+        class="modal modal--animate-scale flex"
       >
         <div
           class="modal__content width-100% max-height-100% overflow-auto bg radius-md inner-glow shadow-md"
@@ -11,10 +10,19 @@
           aria-labelledby="modal-title-1"
           aria-describedby="modal-description-1"
         >
-          <!-- <ModalHeader
-            :title="title"
-            :uuid="uuid"
-          /> -->
+          <header class="bg-contrast-lower bg-opacity-50% padding-y-sm padding-x-md flex items-center justify-between">
+            <h1 class="text-truncate text-md">{{ title }}</h1>
+            <button @click="toggle(uuid)" class="reset modal__close-btn modal__close-btn--inner">
+              <svg class="icon icon--xs" viewBox="0 0 16 16">
+                <title>Close modal window</title>
+                <g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                  <line x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line>
+                  <line x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line>
+                </g>
+              </svg>
+            </button>
+          </header>
+
           <div class="padding-md">
             <!-- <component
               v-bind="block"
@@ -26,15 +34,7 @@
           </div>
         </div>
 
-        <button @click="toggle(uuid)" class="reset modal__close-btn modal__close-btn--outer display@md js-modal__close js-tab-focus">
-          <svg class="icon icon--sm" viewBox="0 0 24 24">
-            <title>Close modal window</title>
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="3" y1="3" x2="21" y2="21" />
-              <line x1="21" y1="3" x2="3" y2="21" />
-            </g>
-          </svg>
-        </button>
+        <div @click="toggle(uuid)" class="modal__overlay bg-black bg-opacity-90%"></div>
       </div>
     </div>
 </template>
@@ -51,6 +51,10 @@ export default defineComponent({
     uuid: {
       type: String,
       default: ''
+    },
+    title: {
+      type: String,
+      default: 'Modal'
     }
   },
 
@@ -108,6 +112,16 @@ Usage: codyhouse.co/license
 
 .modal__content {
   max-width: var(--max-width-sm);
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  cursor: pointer;
 }
 
 // close button

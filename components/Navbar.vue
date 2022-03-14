@@ -1,5 +1,8 @@
 <template>
-  <header class="header position-relative js-header">
+  <header
+    :class="active ? 'header--expanded' : ''"
+    class="header position-relative"
+  >
     <div class="header__container container max-width-lg">
       <div class="header__logo">
         <NuxtLink to="/">
@@ -8,18 +11,31 @@
         </NuxtLink>
       </div>
 
-      <button class="btn btn--subtle header__trigger js-header__trigger" aria-label="Toggle menu" aria-expanded="false" aria-controls="header-nav">
+      <button
+        @click="toggle('navbar')"
+        class="btn btn--subtle header__trigger"
+        aria-label="Toggle menu"
+        :aria-expanded="active ? 'true' : 'false'"
+        aria-controls="header-nav"
+      >
         <i class="header__trigger-icon" aria-hidden="true"></i>
         <span>Menu</span>
       </button>
 
-      <nav id="header-nav" class="header__nav js-header__nav" role="navigation" aria-label="Main">
+      <nav
+        id="header-nav"
+        :class="active ? 'header__nav--is-visible' : ''"
+        class="header__nav"
+        role="navigation"
+        aria-label="Main"
+      >
         <div class="header__nav-inner">
           <div class="header__label">Main menu</div>
           <ul v-if="menu" class="header__list">
             <li
               v-for="item in menu.children"
               :key="item.id"
+              @click="close('navbar')"
               class="header__item"
             >
               <!-- TODO: item.href needs to be item.path
@@ -40,7 +56,7 @@
             <li class="header__item header__item--divider" aria-hidden="true"></li>
             <li class="header__item">
               <!-- <Button class="header__nav-btn btn btn--primary">Search</Button> -->
-              <AppButton text="Search" trigger="search" class="header__nav-btn btn btn--primary"/>
+              <AppButton @click.native="close('navbar')" text="Search" trigger="search" class="header__nav-btn btn btn--primary"/>
               <!-- <NuxtLink :to="$config.cmsAdminUrl" target="_blank" class="header__nav-btn btn btn--primary">Log in</NuxtLink> -->
             </li>
           </ul>
@@ -51,7 +67,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, computed } from '@vue/composition-api'
+import useToggle from '@/composables/useToggle'
 
 export default defineComponent({
   components: {},
@@ -64,17 +81,20 @@ export default defineComponent({
   },
 
   setup (props) {
+    const { isActive, toggle, close } = useToggle()
 
-    return {}
+    const active = computed(() => isActive('navbar'))
+
+    return {
+      toggle,
+      close,
+      active
+    }
   }
 })
 </script>
 
 <style lang="scss">
-// @use '../base' as *;
-// @import '@/styles/base/mixins';
-// @import '@/styles/base/breakpoints';
-
 /* --------------------------------
 
 File#: _1_main-header
@@ -282,53 +302,6 @@ Usage: codyhouse.co/license
 
   .header__trigger {
     display: none;
-  }
-}
-
-// no JS fallback
-html:not(.js) {
-  .header {
-    height: auto;
-    padding-top: var(--space-xs);
-  }
-
-  .header__trigger {
-    display: none;
-  }
-
-  .header__container {
-    display: block;
-  }
-
-  .header__nav {
-    position: static;
-    height: auto;
-    padding: 0;
-    box-shadow: none;
-    overflow: visible;
-    display: block;
-
-    &::before {
-      display: none;
-    }
-  }
-
-  .header__nav-inner {
-    position: static;
-    height: auto;
-    padding: var(--space-md) 0;
-    overflow: visible;
-  }
-
-  @include breakpoint(md) {
-    .header {
-      height: var(--header-height);
-      padding: 0;
-    }
-
-    .header__container {
-      display: flex;
-    }
   }
 }
 </style>
