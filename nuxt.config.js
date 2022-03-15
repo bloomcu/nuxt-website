@@ -30,8 +30,11 @@ export default {
 
   // Runtime .env variables
   publicRuntimeConfig: {
-    SITE_TITLE: process.env.SITE_TITLE || 'Site Title',
-    CMS_ADMIN_URL: process.env.CMS_ADMIN_URL || '',
+    SITE_TITLE: process.env.SITE_TITLE || 'JourneyFrame',
+    CMS_ADMIN_URL: process.env.CMS_ADMIN_URL,
+    MEILISEARCH_HOST: process.env.MEILISEARCH_HOST,
+    MEILISEARCH_KEY: process.env.MEILISEARCH_KEY,
+    // TODO: Remove
     ENABLE_SEARCH: process.env.ENABLE_SEARCH || false,
   },
 
